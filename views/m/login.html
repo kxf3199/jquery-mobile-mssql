@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/jquery/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="/jquery/jquery-1.11.1.min.js"></script>
+<script src="/jquery/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script type="text/javascript">
+function init(){
+
+	$(document).on("pagecreate",function(event){		
+		var rs='<%= registResult %>';
+	  //alert("pagecreate 事件触发!");
+	});
+	
+}
+ $(document).ready(function () {  
+            $("#submitbtn").click(function(){  
+                    var fd=$('#regist_form').serialize();
+                    fd=fd+"&func=注册";
+                    $.ajax({  
+                    cache: false,
+                      type: "POST",  
+                      url: "/login",  
+                      data: fd,  
+                      success:function(data){  
+                      	console.log(data);
+                      	if (data==="successed") {
+                      		$.mobile.changePage("login");  
+                      	}                            
+                      }  
+                });  
+            });  
+  
+        }); 
+</script>
+</head>
+<body onload="init()">
+	<div data-role="page" id="page-login">
+	  <div data-role="header">
+	    <h1>欢迎来到我的主页</h1>
+	  </div>
+
+		<div data-role="main" class="ui-content">
+		    <form method="post" action="/login">
+		      <div data-role="fieldcontain">
+		        <label for="name">用户名：</label>
+		        <input type="text" name="name" id="name">       
+		        <label for="password">密码：</label>
+		        <input type="text" name="password" id="password">	
+		        	        
+		      </div>
+		      
+		      <div data-role="button" >
+		      	<input type="submit" data-inline="true" value="登录">
+		      	
+		      </div>
+		      
+		    </form>
+		 </div>
+
+	  <div data-role="footer">
+	    <div data-role="navbar">
+	      <ul>
+	        <li><a href="/" data-icon="home">首页</a></li>
+	        <li><a href="#page-regist" data-icon="arrow-r">注册</a></li>
+	        <li><a href="#" data-icon="search">忘记密码</a></li>
+	      </ul>
+    	</div>
+	  </div>
+	</div> 
+
+	<div data-role="page" id="page-regist">
+	  <div data-role="header">
+	    <h1>注册</h1>
+	  </div>
+
+	  <div data-role="main" class="ui-content">
+		    <form id="regist_form" method="post" action="/login" data-ajax=“false”>
+		      <div data-role="fieldcontain">		      
+		        <label for="name" name="func" value="注册">用户名：</label>
+		        <input type="text" name="name" id="name">       
+		        <label for="password">密码：</label>
+		        <input type="text" name="password" id="password">	
+		        <label for="psd_confirm">确认密码：</label>
+		        <input type="text" name="psd_confirm" id="psd_confirm">       
+		      </div>
+		      
+		      <div data-role="button" >
+		      	<input id="submitbtn" type="button" data-inline="true"  value="注册">
+		      </div>
+		      
+		    </form>
+		 </div>
+
+	  <div data-role="footer">
+	    <div data-role="navbar">
+	      <ul>
+	        <li><a href="/" data-icon="home">首页</a></li>
+	        <li><a href="#page-login" data-icon="arrow-r">登录</a></li>
+	        <li><a href="#" data-icon="search">搜索</a></li>
+	      </ul>
+    	</div>
+	  </div>
+	</div> 
+</body>
+</html>

@@ -1,0 +1,1 @@
+{"db_config":{"db_name":"dowell","db_info":[{"name":"dowell","config":{"database":"dowell","db_type":"sqlserver","user":"dowell","password":"dowell2017","server":"127.0.0.1","port":"1433"}},{"name":"hzgc","config":{"database":"hzgc","db_type":"sqlserver","user":"cnooc","password":"cnooc2008","server":"127.0.0.1","port":"1433"}}]}}
